@@ -69,3 +69,5 @@ static void Main()
     SomeMethod(z: 3, x: 1);
 }
 ```
+**Best Practices**  
+The most important rule is that a method should either do what it name says or throw an exception. If a method cannot perform its job (e.g. due to incorrect input), it should throw an exception, not return invalid or neutral result. How to throw an exception will be explained in the chapter “Exception Handling”, but for now you should remember that returning an incorrect result or having a side effect are bad practices. If a method cannot do its job, it should inform its caller about this by throwing appropriate exception. Methods should never return wrong result!
