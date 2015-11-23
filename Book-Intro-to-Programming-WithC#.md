@@ -1,8 +1,9 @@
 ## Introduction to Programming with C# by Svetlin Nakov, Veselin Kolev and team  
 free ebook link: http://www.introprogramming.info/english-intro-csharp-book/read-online/chapter-9-methods/
 
-###Ch. 9 Methods
-A method with a variable numnber of arguments uses the 'param' keyword. In the method declaration, you must specify 'params' with the type. For example, below:
+###Ch. 9 Methods  
+**params** - A method with a variable numnber of arguments uses the 'param' keyword. In the method declaration, you must specify 'params' with the type. Note: if you have multiple arguments, params variable should always be the last statement.
+
 ```C#
 static long CalcSum(params int[] elements) //specifiec variable number of element integers
 {
@@ -24,5 +25,47 @@ static void Main()
  
     long sum3 = CalcSum();
     Console.WriteLine(sum3);
+}
+
+
+Output: 
+7
+14
+0
+```
+**optional paramaters** You can declare a method with optional parameters.  
+```C#
+static void SomeMethod(int x, int y = 5, int z = 7)
+{
+}
+
+static void Main()
+{
+    // Normal call of SomeMethod
+    SomeMethod(1, 2, 3);
+    // Omitting z - equivalent to SomeMethod(1, 2, 7)
+    SomeMethod(1, 2);
+    // Omitting both y and z – equivalent to SomeMethod(1, 5, 7)
+    SomeMethod(1);
+}
+
+```
+
+**named arguments** You can name the arguments when passing it into a method and if so, can do your own ordering
+
+```C#
+
+static void SomeMethod(int x, int y = 5, int z = 7)
+{
+}
+
+static void Main()
+{
+    // Passing z by name and x by position
+    SomeMethod(1, z: 3);
+    // Passing both x and z by name
+    SomeMethod(x: 1, z: 3);
+    // Reversing the order of the arguments passed by name, thus 3 will be computed before x
+    SomeMethod(z: 3, x: 1);
 }
 ```
