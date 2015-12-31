@@ -1,4 +1,5 @@
-# Introduction to Programming with C# by Svetlin Nakov, Veselin Kolev and team  
+# Introduction to Programming with C#   
+## by Svetlin Nakov, Veselin Kolev and team  
 **free ebook link:** http://www.introprogramming.info/english-intro-csharp-book/read-online  
 **free online .NET compiler to practice your code:** https://dotnetfiddle.net/
 
