@@ -37,7 +37,7 @@ public class Program {
         Console.WriteLine(sum3);
     }
 };
-	
+----------------------	
 Output: 
 7
 14
