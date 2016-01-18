@@ -25,6 +25,65 @@ We can also create an object that already has some parameters, and these paramet
 ```C#
 Dog DogCopter = new Dog("Lassie", "Collie");
 ```
+Here is an example of making a Dog class and using the new property to create two dogs, one generic and one special with added parameters.
+```C#
+using System;
+					
+public class Dog
+{
+	//field names
+	private string name;
+	private string type;
+	
+	//public properties that outside code can interact with
+	public string Name {
+		get{ return this.name;}
+		set {this.name = value;}
+	}
+	
+	public string Type {
+		get {return this.type;}
+		set {this.type = value;}
+	}
+	
+	//default constructor
+	public Dog(){
+		this.Name = "Generic Dogg";
+		this.Type = "Generic Mutt";
+	}
+	
+	//constructor with parameters
+	public Dog(string name, string type){
+		this.Name = name;
+		this.Type = type;
+	}
+	
+	// Method Bark
+    public void Bark()
+    {
+		Console.WriteLine("I am {0} the {1} Dog and I say Woof!", name, type);
+    }
+	
+}
+
+public class Program
+{
+	
+	public static void Main()
+	{
+		Dog someDog = new Dog();
+		someDog.Bark();
+		
+		Dog specialDog = new Dog("Lassie", "Collie");
+		specialDog.Bark();
+	}
+}
+============
+Output:
+I am Generic Dogg the Generic Mutt Dog and I say Woof!
+I am Lassie the Collie Dog and I say Woof!
+
+```
 
 
 
