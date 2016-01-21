@@ -123,7 +123,44 @@ Sequence: 1, 2, 3
 ####What are Namespaces?
 **namespaces** are logical groupings of classes. If they are nested within each other than they are described using a "Namespace.NestedNamespace" manner. You can give another class access to a particular namespace with a "using". Note that inclusion of a namespace is not recursive. Just because your using says Animal.Dogs does not give you access to Animal.Dogs.Poodles or any nested namespaces within Dogs.
 
+####Example: Make a program that checks to see if the year you have entered is a leap year.
 
+```C#
+using System;
+					
+public class Program
+{
+	public class LeapYear
+{
+    private int year;
+	public int Year {
+		get{return this.year;}
+		set{this.year = value;}
+	}
+	
+		public static void isLeapYear(int year){
+			var answer = DateTime.IsLeapYear(year);
+			
+			if(answer == true){
+				Console.WriteLine("Yes, that year is a leap year");	
+			}
+			else{
+				Console.WriteLine("No, not a leap year.");	
+			}
+		}
+		
+}
+	public static void Main()
+	{
+		Console.WriteLine("Type a year to check whether it is a leap year");
+        var answer = Console.ReadLine();
+		LeapYear.isLeapYear(int.Parse(answer));
+		Main();
+
+	}
+}
+
+```
 
 
 
