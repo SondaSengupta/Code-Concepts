@@ -83,7 +83,48 @@ Output:
 I am Generic Dogg the Generic Mutt Dog and I say Woof!
 I am Lassie the Collie Dog and I say Woof!
 ```
-####Calling Methods to Objects
+####Static Fields and Methods
+If a class is a category of objects, static fields and methods relate to the category itself. Static members do not need an instance of the object to be created. They are actually created when the class is used for the first time during the execution of the program. A "utility" class is a class that only has static members.
+
+```C#
+using System;
+					
+public class Program
+{
+	public class Sequence
+{
+    // Static field, holding the current sequence value
+    private static int currentValue = 0;
+ 
+    // Intentionally deny instantiation of this class
+    private Sequence()
+    {
+    }
+ 
+    // Static method for taking the next sequence value
+    public static int NextValue()
+    {
+        currentValue++;
+        return currentValue;
+    }
+}
+	public static void Main()
+	{
+		 Console.WriteLine("Sequence: {0}, {1}, {2}",
+            Sequence.NextValue(), Sequence.NextValue(),
+            Sequence.NextValue());
+	}
+}
+========
+Output:
+Sequence: 1, 2, 3
+```
+
+####What are Namespaces?
+**namespaces** are logical groupings of classes. If they are nested within each other than they are described using a "Namespace.NestedNamespace" manner. You can give another class access to a particular namespace with a "using". Note that inclusion of a namespace is not recursive. Just because your using says Animal.Dogs does not give you access to Animal.Dogs.Poodles or any nested namespaces within Dogs.
+
+
+
 
 
 
