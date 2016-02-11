@@ -77,3 +77,22 @@ Leo goes Rawr!
 - Since .NET compiled code is represented as Unicode, it is possible to code more than just English and Latin. However, if one wishes do this and make the Visual Studio file readable, you will have to change the character encoding away from its default (which is usually your local region) to another character encoding such as UTF-8 for Arabic letters or Chinese. English is the most common coding language though.
 
 ### Modifiers and Access Levels
+**public** : element can be accessed from any class
+**private** : element can only be accessed from the class it is defined. No other classes can access it, even if other classes exist within the same namespace.
+**internal** : element can only be accessed from the same assembly, i.e. the same project within Visual Studio.
+**protected** : elements that are not visible to users of the class (other classes that initialize it or use it), but are visible to the inheriting classes.
+**protected internal** : an element that can be accessed within the same Visual Studio project and visible to inheriting classes, even outside assemblies.
+**sealed**: element that cannot be inherited by other classes.
+
+#### What is an assembly?
+**assembly** : a collection of compiled types (classes and other types) which their resources, which are stored in one large binary file called an .exe or .dll file. Every time you compile a .NET application, one or several assemblies or made by the compiler and stored as an .exe or .dll file.
+
+### Declaring Classes
+- we say one class can access another when 1) an instance of the other object can be created 2) can access methods and elements of the other class.
+- public classes can be used by all namespaces.
+- private classes can only be accessed within the class its in.
+- internal classes can only be used within the namespace it resides in.
+- Classes are in PascalCase and are Nouns.
+
+### The Reserved Word "This"
+-
