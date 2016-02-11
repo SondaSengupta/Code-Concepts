@@ -95,4 +95,6 @@ Leo goes Rawr!
 - Classes are in PascalCase and are Nouns.
 
 ### The Reserved Word "This"
--
+- **this** : a reserved word that means it is referencing the current object. The object changes depending upon where "this" is used.
+
+### Fields
