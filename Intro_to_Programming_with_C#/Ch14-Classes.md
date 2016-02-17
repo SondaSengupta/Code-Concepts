@@ -186,3 +186,51 @@ This will use the field instead of local: 3
 - If two classes are not visible one to other, then their members (fields and methods) are not visible also, regardless of what kind of access levels their elements have.
 
 ### Constructors (Ctors)
+- the constructor's task is to initialize the memory where the fields will be stored.
+- Use base when there is inheritance, and a parent class already provides the functionality that you're trying to achieve.
+- Use this when you want to reference the current entity (or self), use it in the constructor's header/signature when you don't want to duplicate functionality that is already defined in another constructor. Basically, using base and this in a constructor's header is to keep your code DRY, making it more maintainable and less verbose.
+
+```C#
+using System;
+
+public class Person
+{
+
+    public Person(string name)
+    {
+        Console.WriteLine("My name is " + name);
+    }
+}
+
+public class Employee : Person
+{
+	string name;
+    public Employee(string name, string job)
+        : base(name)
+    {
+        Console.WriteLine("I " + job + " for money.");
+    }
+
+    public Employee() : this("Jeff", "write code.")
+    {
+		Console.WriteLine("I like cake.");
+    }
+}
+
+public class Program
+{
+	public void Main(){
+		var Amy = new Person("Amy");
+		var TheDoctor = new Employee ("The Doctor", "time travel");
+		var Jeff = new Employee();
+	}
+}
+=========
+OUTPUT:
+My name is Amy
+My name is The Doctor
+I time travel for money.
+My name is Jeff
+I write code. for money.
+I like cake.
+```
