@@ -98,3 +98,91 @@ Leo goes Rawr!
 - **this** : a reserved word that means it is referencing the current object. The object changes depending upon where "this" is used.
 
 ### Fields
+**fields** : member variables that hold the state of the object. The states are different depending on each instance of the class, each different object.
+
+- the scope of a class field begins from where it is declared and ends at the last bracket of a class's body.
+- local variables, such as seen in methods must be initialed with a value and leads to a compilation error since they are not given defaults.
+- when a field is created, unless specified otherwise .NET sets it to a zeroed value or null if it's an object.
+
+```C#
+using System;
+
+public class Dog
+{
+    string name;
+    int age;
+    int length;
+    bool isMale;
+
+    public static void Main()
+    {
+        Dog dog = new Dog();
+        Console.WriteLine("Dog's name is: " + dog.name);
+        Console.WriteLine("Dog's age is: " + dog.age);
+        Console.WriteLine("Dog's length is: " + dog.length);
+        Console.WriteLine("Dog is male: " + dog.isMale);
+    }
+}
+=========
+Dog's name is:
+Dog's age is: 0
+Dog's length is: 0
+Dog is male: False
+```
+#### Fields "const" and "readonly"
+- these are constants that have one value that is used several times.
+- const fields are declared and initialized in one go and do not change afterwards. They are also called compile-time constants because code that includes this field is replaced by the value itself during compiling.
+- readonly fields are either initialized during declaration or given a value in the constructor, and then cannot be changed. They are set during the execution of the program, or runtime, making it a runtime variable.
+
+### Methods
+```C#
+// How a method is defined:
+[<modifiers>] [<return_type>] <method_name>([<parameters_list>])
+{
+    // … Method's body …
+    [<return_statement>];
+}
+```
+
+### Accessing Non-Static Data of the Class
+- The access to the non-static elements of a class (fields and methods) is done via the reserved word this and the operator for access – "dot".
+- It is also possible not even use the word "this"
+
+### Hiding Fields with Local Variables
+- When using a method with a local variable, it will be used instead of a field of the same name.
+- Sometimes, you have to use the field, even if there is a same name local variable, and in such cases, you can use "this" to refer to the object instance itself.
+
+```C#
+using System;
+
+    public class OverlappingScopeTest
+{
+    int myValue = 3;
+
+    void PrintMyValue()
+    {
+        Console.WriteLine("My value is: " + myValue);
+    }
+
+    public void Main()
+    {
+        OverlappingScopeTest instance = new OverlappingScopeTest();
+        instance.PrintMyValue();
+
+		int myValue = 5;
+		Console.WriteLine("Using overlapping local variable, it is: " + myValue);
+
+		Console.WriteLine("This will use the field instead of local: " + this.myValue);
+    }
+}
+========
+OUTPUT:
+My value is: 3
+Using overlapping local variable, it is: 5
+This will use the field instead of local: 3
+```
+
+### Visibility of Fields and Methods
+- If two classes are not visible one to other, then their members (fields and methods) are not visible also, regardless of what kind of access levels their elements have.
+
+### Constructors (Ctors)
