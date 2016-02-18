@@ -187,8 +187,9 @@ This will use the field instead of local: 3
 
 ### Constructors (Ctors)
 - the constructor's task is to initialize the memory where the fields will be stored.
-- Use base when there is inheritance, and a parent class already provides the functionality that you're trying to achieve.
-- Use this when you want to reference the current entity (or self), use it in the constructor's header/signature when you don't want to duplicate functionality that is already defined in another constructor. Basically, using base and this in a constructor's header is to keep your code DRY, making it more maintainable and less verbose.
+- Use 'base' when there is inheritance, and a parent class already provides the functionality that you're trying to achieve.
+- Use 'this' when you want to reference its own class when you don't want to duplicate functionality that is already defined in another constructor.
+- Basically, using 'base' and 'this' in a constructor's header is to keep your code DRY, making it more maintainable and less verbose.
 
 ```C#
 using System;
@@ -244,3 +245,8 @@ My name is James Bond.
 My name is James Bond and I love Martinis.
 Shaken not stirred.
 ```
+
+#### Parameterless Constructor versus Default Constructor
+- If we declare at least one constructor in a given class, the compiler will not create a default constructor for us.
+- The default implicit constructor is created by the compiler, if we do not declare any constructor in our class, but a parameterless constructor is created by us.
+- The default constructor will always have access level protected or public, depending on the access modifier of the class, while the level of access of the constructor without parameters all depends on us – we define it.
