@@ -198,22 +198,32 @@ public class Person
 
     public Person(string name)
     {
-        Console.WriteLine("My name is " + name);
+        Console.WriteLine("My name is " + name + ".");
     }
 }
 
 public class Employee : Person
 {
-	string name;
-    public Employee(string name, string job)
+	//'base' calls an inheriting constructor, the Person constructor in this case.
+	//then Employee constructor can add onto this with food.
+    public Employee(string name, string food)
         : base(name)
     {
-        Console.WriteLine("I " + job + " for money.");
+        Console.WriteLine("My name is " + name + " and I love " + food + ".");
     }
 
-    public Employee() : this("Jeff", "write code.")
+	//'this' calls a constructor within its own class that matches the same number/type of paramaters
+	// thus, an empty employee constructor can produce an instance with default values by reusing a constructor already made.
+
+	//1) The empty Employee() constructor is called from the program.
+	//2) Noticing the 'this' constructor, the compiler matches these parameters to a known constructor, which is Employee(name, food) above.
+	//3) Going to Employee(name, food), the compiler sees that it is using 'base' inherited constructor, so goes to Person(name).
+	//4) The compiler executes Person(name) with name being James Bond.
+	//5) The compiler then can execute Employee(name, food) which is James Bond and Martinis, specified from 'this'
+	//6) Then, the compiler goes back to Employee() constructor and executes what is within these brackets last.
+    public Employee() : this("James Bond", "Martinis")
     {
-		Console.WriteLine("I like cake.");
+		Console.WriteLine("Shaken not stirred.");
     }
 }
 
@@ -221,16 +231,16 @@ public class Program
 {
 	public void Main(){
 		var Amy = new Person("Amy");
-		var TheDoctor = new Employee ("The Doctor", "time travel");
+		var TheDoctor = new Employee ("The Doctor", "Jelly Babies");
 		var Jeff = new Employee();
 	}
 }
 =========
 OUTPUT:
-My name is Amy
-My name is The Doctor
-I time travel for money.
-My name is Jeff
-I write code. for money.
-I like cake.
+My name is Amy.
+My name is The Doctor.
+My name is The Doctor and I love Jelly Babies.
+My name is James Bond.
+My name is James Bond and I love Martinis.
+Shaken not stirred.
 ```
