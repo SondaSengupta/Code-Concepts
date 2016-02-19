@@ -250,3 +250,53 @@ Shaken not stirred.
 - If we declare at least one constructor in a given class, the compiler will not create a default constructor for us.
 - The default implicit constructor is created by the compiler, if we do not declare any constructor in our class, but a parameterless constructor is created by us.
 - The default constructor will always have access level protected or public, depending on the access modifier of the class, while the level of access of the constructor without parameters all depends on us – we define it.
+
+### Properties
+- Properties are elements that are somewhere in between methods and fields. Like fields, they are used to help store data, but do so by ensuring the data is encapsulated and validated before stored. Like methods, they have up to two methods/actions within themselves for getting and setting fields.
+- A getter always has a return value.
+- A setter always uses a hidden "value" to assign it to some field.
+- For simple classes, fields do not have to be defined. You can define only properties, called automatic properties, and the compiler will make the fields for you. However, if you expressly define fields yourself, you will have more control over the data's use.
+
+```C#
+public class Dog
+{
+	private int age;
+
+	public int Age {
+		get { return this.age; }
+		set {
+			// Take precaution: perform check for correctness
+			if (value < 0)
+			{
+				throw new ArgumentException(
+					"Invalid argument: Age should be a positive number.");
+			}
+			// Assign the new correct value
+			this.age = value;
+		}
+	}
+
+	public Dog (int howOld)
+	{
+		this.Age = howOld;
+	}
+}
+
+public class Program
+{
+	public void Main()
+	{
+		Dog dog2 = new Dog(-5);
+	}
+}
+====
+// OUTPUT:
+//Run-time exception (line 17): Invalid argument: Age should be //a positive number.
+
+//Stack Trace:
+
+//[System.ArgumentException: Invalid argument: Age should be a //positive number.]
+//  at Dog.set_Age(Int32 value): line 17
+//  at Dog..ctor(Int32 howOld): line 23
+//  at Program.Main(): line 31
+````
