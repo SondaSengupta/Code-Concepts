@@ -300,3 +300,65 @@ public class Program
 //  at Dog..ctor(Int32 howOld): line 23
 //  at Program.Main(): line 31
 ````
+
+### Static Classes and Static Members
+- **static elements** are properties, fields, and methods within a class with the static keyword in front. The behavior is not dependent on the object state.
+- Normally, each created object will have its own copy of fields, methods, and properties and will not be able to access each other's elements. Objects have no way of sharing information.
+- Static elements of the class can be used without creating an object of the given class. If objects are created, then there will be one copy of these elements and these will be shared among all objects of its class.
+
+```C#
+using System;
+					
+public class Kids
+{
+	static int ClassNumber = 0;
+	public string Name;
+	public int Age;
+	
+	
+	public Kids(string name, int age){
+	this.Name = name;
+	this.Age = age;
+	}
+	
+	public static int AddtoClass(){
+		ClassNumber++;
+		return ClassNumber;
+	}
+	
+	public void SayHello() {
+		Console.WriteLine("Hello, my name is {0} and I am {1} years old.", Name, Age);	
+	}
+	
+	public static void Count(){
+		Console.WriteLine("There are {0} kids in this class.", ClassNumber);	
+	}
+	
+	public static void Main()
+	{
+		Kids Sally = new Kids("Sally", 5);
+		Sally.SayHello();
+		Kids.AddtoClass();
+		Kids.Count();
+		
+		Kids Robby = new Kids("Robby", 6);
+		Robby.SayHello();
+		Kids.AddtoClass();
+		
+		//Robby.Count(); 
+		//Since Count() is a static method, it cannot be accessed with an instance 
+		//of the object (Robby). Can only be accessed by the type, Kids.
+		
+		Kids.Count();
+		
+		
+	}
+}
+==========
+// OUTPUT:
+// Hello, my name is Sally and I am 5 years old.
+// There are 1 kids in this class.
+// Hello, my name is Robby and I am 6 years old.
+// There are 2 kids in this class.
+```
+- 
