@@ -305,6 +305,9 @@ public class Program
 - **static elements** are properties, fields, and methods within a class with the static keyword in front. The behavior is not dependent on the object state.
 - Normally, each created object will have its own copy of fields, methods, and properties and will not be able to access each other's elements. Objects have no way of sharing information.
 - Static elements of the class can be used without creating an object of the given class. If objects are created, then there will be one copy of these elements and these will be shared among all objects of its class.
+- Static elements and methods cannot access non-static elements because static elements deal on the class-level and do not "know" about individual data of objects. Thus, "this" keyword will error out on static methods.
+- Static properties can be accessed only through dot notation, applied to the name of the class in which they are declared.
+- When all the members are static, you can define a whole class as being static. If a class is static, it can have a static constructor in which the constructor is used only once when the object of a class is created or one of the members is accessed.
 
 ```C#
 using System;
@@ -334,6 +337,16 @@ public class Kids
 		Console.WriteLine("There are {0} kids in this class.", ClassNumber);	
 	}
 	
+	public void ShowClassSize(){
+		Console.WriteLine("My class is {0} big.", ClassNumber);	
+		//nonstatic elements can still access static elements.
+	}
+	
+	public void SelfAddingtoClass(){
+		//non-static methods can still access static methods.
+		AddtoClass(); 
+	}
+	
 	public static void Main()
 	{
 		Kids Sally = new Kids("Sally", 5);
@@ -351,6 +364,12 @@ public class Kids
 		
 		Kids.Count();
 		
+		Kids Lisa = new Kids("Lisa", 3);
+		
+		//But you can call an instance method that which itself calls that static method.
+		Lisa.SelfAddingtoClass();
+		Lisa.ShowClassSize();
+		
 		
 	}
 }
@@ -360,5 +379,24 @@ public class Kids
 // There are 1 kids in this class.
 // Hello, my name is Robby and I am 6 years old.
 // There are 2 kids in this class.
+// My class is 3 big.
 ```
-- 
+### Constants
+**constants** are elements that always have the same value once they are initialized. There are two types: compile time constants and runtime constants called with readonly.  
+- Constants are in PascalCase. Sometimes people use ALL_CAPS.
+- Values, which occur more than once in the program or are likely to change over time, must be declared as constants. That way you have one place to change the constant for the whole program.
+
+Compile Time Constants:  
+- Example: public const double PI = 3.141592653589793;
+- Can only be created at the same time they are declared.
+- Constants declared with modifier const must be of primitive, enumeration or reference type, and if they are of reference type, this type must be either a string or the value, that we assign to the constant, or it must be null. Meaning, the compiler must be able to assign it a value right upon creation. No looking up classes and going through a constructor to figure it out.
+- These constants are only assigned during compilation.
+
+RunTime Constants (ReadOnly):  
+- To declare reference type constants, you must use "static readonly". Example: public static readonly Color White = new Color(255, 255, 255);
+- These constants are assigned when the program is running.
+
+### Structures
+
+
+
