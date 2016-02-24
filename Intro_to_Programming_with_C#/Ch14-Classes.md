@@ -311,66 +311,66 @@ public class Program
 
 ```C#
 using System;
-					
+
 public class Kids
 {
 	static int ClassNumber = 0;
 	public string Name;
 	public int Age;
-	
-	
+
+
 	public Kids(string name, int age){
 	this.Name = name;
 	this.Age = age;
 	}
-	
+
 	public static int AddtoClass(){
 		ClassNumber++;
 		return ClassNumber;
 	}
-	
+
 	public void SayHello() {
-		Console.WriteLine("Hello, my name is {0} and I am {1} years old.", Name, Age);	
+		Console.WriteLine("Hello, my name is {0} and I am {1} years old.", Name, Age);
 	}
-	
+
 	public static void Count(){
-		Console.WriteLine("There are {0} kids in this class.", ClassNumber);	
+		Console.WriteLine("There are {0} kids in this class.", ClassNumber);
 	}
-	
+
 	public void ShowClassSize(){
-		Console.WriteLine("My class is {0} big.", ClassNumber);	
+		Console.WriteLine("My class is {0} big.", ClassNumber);
 		//nonstatic elements can still access static elements.
 	}
-	
+
 	public void SelfAddingtoClass(){
 		//non-static methods can still access static methods.
-		AddtoClass(); 
+		AddtoClass();
 	}
-	
+
 	public static void Main()
 	{
 		Kids Sally = new Kids("Sally", 5);
 		Sally.SayHello();
 		Kids.AddtoClass();
 		Kids.Count();
-		
+
 		Kids Robby = new Kids("Robby", 6);
 		Robby.SayHello();
 		Kids.AddtoClass();
-		
-		//Robby.Count(); 
-		//Since Count() is a static method, it cannot be accessed with an instance 
+
+		//Robby.Count();
+		//Since Count() is a static method, it cannot be accessed with an instance
 		//of the object (Robby). Can only be accessed by the type, Kids.
-		
+
 		Kids.Count();
-		
+
 		Kids Lisa = new Kids("Lisa", 3);
-		
+
 		//But you can call an instance method that which itself calls that static method.
 		Lisa.SelfAddingtoClass();
 		Lisa.ShowClassSize();
-		
-		
+
+
 	}
 }
 ==========
@@ -382,21 +382,77 @@ public class Kids
 // My class is 3 big.
 ```
 ### Constants
-**constants** are elements that always have the same value once they are initialized. There are two types: compile time constants and runtime constants called with readonly.  
+**constants** are elements that always have the same value once they are initialized. There are two types: compile time constants and runtime constants called with readonly.
 - Constants are in PascalCase. Sometimes people use ALL_CAPS.
 - Values, which occur more than once in the program or are likely to change over time, must be declared as constants. That way you have one place to change the constant for the whole program.
 
-Compile Time Constants:  
+Compile Time Constants:
 - Example: public const double PI = 3.141592653589793;
 - Can only be created at the same time they are declared.
 - Constants declared with modifier const must be of primitive, enumeration or reference type, and if they are of reference type, this type must be either a string or the value, that we assign to the constant, or it must be null. Meaning, the compiler must be able to assign it a value right upon creation. No looking up classes and going through a constructor to figure it out.
 - These constants are only assigned during compilation.
 
-RunTime Constants (ReadOnly):  
+RunTime Constants (ReadOnly):
 - To declare reference type constants, you must use "static readonly". Example: public static readonly Color White = new Color(255, 255, 255);
 - These constants are assigned when the program is running.
 
 ### Structures
+- classes are reference types that store addresses in its stack and the values in heap memory.
+- structures or structs use only value types. Thus, it can result in very interesting behavior. For example, for method parameters, the method will create a copy of the arguments and then use it, instead of using the address and passing it in.
+-Classes are used more often than structures. Use structs as exception, and only if you know well what are you doing!
 
+### Enumerations
+- **Enumerated Types** are logically connected constants. An enumeration is a class whose members are only constants.
+- Each constant in one enumeration is actually a textual representation of an integer. By default this number is the constant’s index in the list of constants of a particular enumeration type.
+- When we modify the list of constants in an existing enumeration, we should be careful not to break the logic of the code that already exists and uses the constants, declared so far.
 
+```C#
+using System;
 
+namespace Diner
+{
+	public enum Size
+	{
+		small = 6,
+		medium = 8,
+		large = 16,
+		mega = 32
+	}
+
+	public class Drink
+	{
+		public string Name;
+		public Size oz;
+		public Drink(string name)
+		{
+			this.Name = name;
+		}
+
+		//Using the Size enum ensures the user can only pick a valid Size from that enum.
+		public Drink(string name, Size oz): this (name)
+		{
+			this.oz = oz;
+		}
+	}
+
+	public class Program
+	{
+		public static void Main()
+		{
+			Drink martini = new Drink("Martini");
+			Console.WriteLine("I want to order a {0} drink.", Size.small);
+			Console.WriteLine("The large drink is {0} ounces!", (int)Size.large);
+			Drink tea = new Drink("tea", Size.small);
+			Console.WriteLine("I ordered a {0} which is the {1} size.", tea.Name, tea.oz);
+			Console.WriteLine("The {0} is {1} ounces.", tea.Name, (int)tea.oz);
+		}
+	}
+}
+==========
+OUTPUT:
+I want to order a small drink.
+The large drink is 16 ounces!
+I ordered a tea which is the small size.
+The tea is 6 ounces.
+// https://dotnetfiddle.net/1cLSCD
+```
