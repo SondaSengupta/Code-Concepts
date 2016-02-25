@@ -1,7 +1,7 @@
 # Introduction to SQL
 - based off code school's SQL Course: http://campus.codeschool.com/courses/try-sql/
 
-#### Selecting Data to See
+### Selecting Data
 ```
 use [database_name]
 select [column_name]
@@ -11,6 +11,8 @@ order by
 ```
 - "Order by DESC" allows you to sort by largest value first.
 - "Where" uses the =, >, >=, <, <=, and <> operators.
+
+### Changing Data
 
 #### Insert Data with Insert Statement
 ```
@@ -54,7 +56,7 @@ where ...
 Drop database [database_name]
 ```
 
-#### Create a database and tables
+### Create a database and tables
 ```
 create database [database_name]
 
@@ -77,7 +79,7 @@ ADD column_name datatype
 ALTER TABLE table_name
 DROP column_name datatype
 ```
-#### Simple Aggregate Functions
+### Simple Aggregate Functions
 ```
 select count(colum_name)
 from table_name;
@@ -128,10 +130,72 @@ select country, sum(salary)
 from actors
 group by country
 having count(name) > 1;
---Use the GROUP BY clause to write a query that returns the country name 
---and total salary paid to actors for each country
+-- Use the GROUP BY clause to write a query that returns the country name 
+-- and total salary paid to actors for each country
 -- for countries with more than one actor.
 ```
+### Adding Constraints to Column
+- "not null" prevents a column from having null values
+- "unique" specifies that there cannot be duplicate values within a column
+```
+create table table_name,
+(
+  id int not null,
+  name varchar(20) unique,
+)
+
+--A Unique Table Constraint to personalize the error message with the name of the constraint name you've provided.
+create table table_name,
+(
+  id int not null,
+  name varchar(20),
+  constraint unique_constraint_name unique(specified_column_name);
+)
+
+--checking for a unique combination
+create table table_name,
+(
+  id int not null,
+  name varchar(20)
+  constraint unique(column_name1, column_name2)
+)
+
+--making sure that no negative gets inside with a 'CHECK' constraint
+create table table_name,
+(
+  id int NOT NULL CHECK (id > 0),
+  name varchar(20)
+)
+
+```
+
+### Adding Constraints for Primary and Foreign Keys
+
+```
+--specifying a column as the primary key
+create table table_name,
+(
+  id int NOT NULL CHECK (id > 0) primary key,
+  name varchar(20)
+)
+
+--specifying a column as the foregin key using 'references'
+create table table_name,
+(
+  id int NOT NULL CHECK (id > 0) references other_table_name
+  name varchar(20)
+)
+
+--OR in table constraint syntax
+create table table_name,
+(
+  id int NOT NULL CHECK (id > 0)
+  name varchar(20)
+  foreign key (the_column_name_that's_foreign) references other_table;
+)
+
+```
+
 
 
 
