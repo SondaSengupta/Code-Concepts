@@ -51,12 +51,42 @@ where ...
 #### Deleting (dropping) a database
 - once deleted, you cannot get the data back unless it has been backed up.
 ```
-Drop [database_name]
+Drop database [database_name]
 ```
 
 #### Create a database and tables
 ```
-create [database_name]
+create database [database_name]
+
+create table [table_name]
+(
+column_name, int,
+column_name2, varchar(20),
+);
+```
+
+- note the table or database will start off empty until you use update to update it with data.
+- 
+#### Altering Columns
+- **add** a column. Example:
+```
+ALTER TABLE table_name
+ADD column_name datatype
+```
+- **delete** a column. Example:
+```
+ALTER TABLE table_name
+DROP column_name datatype
+```
+
+
+
+
+
+
+
+
+
 
 
 
