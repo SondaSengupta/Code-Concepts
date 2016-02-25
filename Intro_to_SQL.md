@@ -64,9 +64,7 @@ column_name, int,
 column_name2, varchar(20),
 );
 ```
-
-- note the table or database will start off empty until you use update to update it with data.
-- 
+- note the table or database will start off empty until you use update to update it with data.  
 #### Altering Columns
 - **add** a column. Example:
 ```
@@ -78,6 +76,64 @@ ADD column_name datatype
 ALTER TABLE table_name
 DROP column_name datatype
 ```
+#### Simple Aggregate Functions
+```
+select count(colum_name)
+from table_name;
+
+select sum(colum_name)
+from table_name;
+
+select avg(colum_name)
+from table_name;
+
+select max(colum_name), min(colum_name)
+from table_name;
+
+```
+- the count(*) will count all rows, including null ones. If you do count(column_name) it will return non-null rows of that column.
+- sum, avg, max, and min will only work if the specified column is a number.
+- you can put multiple queries into one such as the very last example that does min and max at the same time.
+
+### Aggregate Functions using GroupBy and Having
+- **group by** :  The GROUP BY statement is used in conjunction with the aggregate functions to group the result-set by one or more columns.
+- **having** : Used to restrict the group by to only those that meet a specified condition.
+
+```
+select columnNameYouWantToSee, aggregateFunction (column_name)
+from table_name
+group by column_name
+having aggregate(column_name) with specific condition
+```
+
+```
+CREATE TABLE Actors (
+  name varchar(50),
+  country varchar(50),
+  salary integer,
+  role varchar(50)
+);
+
+INSERT INTO Actors (name, country, salary, role) VALUES
+  ('Vivien Leigh',          'IN',     150000,   'leading'),
+  ('Clark Gable',           'USA',    120000,   'leading'),
+  ('Olivia de Havilland',   'Japan',  30000,    'leading'),
+  ('Hattie McDaniel',       'USA',    45000,    'supporting'),
+  ('Leslie Howard',         'UK',     50000,    'leading'),
+  ('Alicia Rhett',          'USA',    97000,    'supporting'),
+  ('Lillian Kemble-Cooper', 'UK',     95000,    'supporting');
+  
+select country, sum(salary)
+from actors
+group by country
+having count(name) > 1;
+--Use the GROUP BY clause to write a query that returns the country name 
+--and total salary paid to actors for each country
+-- for countries with more than one actor.
+```
+
+
+
 
 
 
