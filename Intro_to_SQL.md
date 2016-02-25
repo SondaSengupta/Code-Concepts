@@ -64,7 +64,8 @@ column_name, int,
 column_name2, varchar(20),
 );
 ```
-- note the table or database will start off empty until you use update to update it with data.  
+- note the table or database will start off empty until you use update to update it with data.
+
 #### Altering Columns
 - **add** a column. Example:
 ```
