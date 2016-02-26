@@ -11,6 +11,7 @@ order by
 ```
 - "Order by DESC" allows you to sort by largest value first.
 - "Where" uses the =, >, >=, <, <=, and <> operators.
+- "Where" can use and/or for multiple statements. You can also do "where column_name in (number, number) to search for one number Or the other.
 
 ### Changing Data
 
