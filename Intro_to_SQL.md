@@ -197,14 +197,14 @@ create table table_name,
 
 ```
 
-### Joins
-
+### Inner Joins
+- "Inner Join" and "Join" are the same keyword action.
 ```
 **inner join** when you want to know what both sets have without nulls
-select [column_name]
-from [table_name]
-inner join [other_table_name]
-on [others_foreignkey] = [primarykey]
+SELECT column_name(s)
+FROM table1
+INNER JOIN table2
+ON table1.column_name=table2.column_name;
 ``
 
 select movies.title, genres.name
@@ -214,7 +214,8 @@ on movies_genres.movie_id = movies_genre.genre_id;
 ```
 
 ```
-Example: Make a table of actors and movies that have a many to many relationship. Select the actor names relating to the movies they have played in.
+--Example: Make a table of actors and movies that have a 
+--many to many relationship. Select the actor names relating to the movies they have played in.
 
 CREATE TABLE Actors (
   id int PRIMARY KEY,
