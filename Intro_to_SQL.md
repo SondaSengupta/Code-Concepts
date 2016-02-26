@@ -158,7 +158,7 @@ create table table_name,
 (
   id int not null,
   name varchar(20)
-  constraint unique(column_name1, column_name2)
+  constraint unique_constraint_name unique(column_name1, column_name2)
 )
 
 --making sure that no negative gets inside with a 'CHECK' constraint
@@ -195,6 +195,68 @@ create table table_name,
   foreign key (the_column_name_that's_foreign) references other_table;
 )
 
+```
+
+### Joins
+
+```
+**inner join** when you want to know what both sets have without nulls
+select [column_name]
+from [table_name]
+inner join [other_table_name]
+on [others_foreignkey] = [primarykey]
+``
+
+select movies.title, genres.name
+from movies
+inner join genres
+on movies_genres.movie_id = movies_genre.genre_id;
+```
+
+```
+Example: Make a table of actors and movies that have a many to many relationship. Select the actor names relating to the movies they have played in.
+
+CREATE TABLE Actors (
+  id int PRIMARY KEY,
+  name varchar(50) NOT NULL
+);
+
+CREATE TABLE Movies (
+  id int PRIMARY KEY,
+  title varchar(50) NOT NULL
+);
+
+CREATE TABLE Actors_Movies (
+  actor_id int REFERENCES Actors,
+  movie_id int REFERENCES Movies
+);
+
+INSERT INTO Actors (id, name) VALUES
+  (1, 'Vivien Leigh'),
+  (2, 'Clark Gable'),
+  (3, 'Olivia de Havilland');
+
+INSERT INTO Movies (id, title) VALUES
+  (1, 'Don Juan'),
+  (2, 'The Lost World'),
+  (3, 'Peter Pan'),
+  (4, 'Robin Hood');
+
+INSERT INTO Actors_Movies (actor_id, movie_id) VALUES
+  (1, 1),
+  (1, 2),
+  (2, 3),
+  (3, 2),
+  (3, 4);
+  
+  --SQL QUERY--
+SELECT Actors.name, Movies.title 
+FROM Actors
+Inner Join Actors_Movies
+on Actors.id = Actors_Movies.actor_id
+Inner Join Movies
+on Actors_Movies.movie_id = movies.id
+order by title;
 ```
 
 
