@@ -259,7 +259,44 @@ Inner Join Movies
 on Actors_Movies.movie_id = movies.id
 order by title;
 ```
+### Subqueries
+- Subqueries (also known as inner queries or nested queries) are a tool for performing operations in multiple steps.
+- The IN operator allows you to specify multiple values in a WHERE clause.
+```
+EXAMPLE: First, let's write a query that returns every movie_id from the Rooms table that has more than 75 seats. That will be the subquery. Next, turn this query into a subquery by wrapping it in parentheses. Then use the returned ids to find the matching movies and return their titles.
 
+CREATE TABLE Movies (
+  id int PRIMARY KEY,
+  title varchar(50) NOT NULL
+);
+
+INSERT INTO Movies (id, title) VALUES
+  (1, 'Don Juan'),
+  (2, 'The Lost World'),
+  (3, 'Peter Pan'),
+  (4, 'Robin Hood');
+
+CREATE TABLE Rooms (
+  id INT PRIMARY KEY,
+  seats int,
+  movie_id int,
+  FOREIGN KEY (movie_id) REFERENCES Movies
+);
+
+INSERT INTO Rooms (id, seats, movie_id) VALUES
+  (1, 50, 2),
+  (2, 100, 1),
+  (3, 100, NULL),
+  (4, 150, 3);
+  
+QUERY:
+select movies.title
+from movies
+where movies.id in
+(select r.movie_id
+from rooms as r
+where r.seats > 75);
+```
 
 
 
