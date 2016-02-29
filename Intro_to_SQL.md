@@ -263,7 +263,6 @@ order by title;
 - Subqueries (also known as inner queries or nested queries) are a tool for performing operations in multiple steps.
 - The IN operator allows you to specify multiple values in a WHERE clause.
 ```
-EXAMPLE: First, let's write a query that returns every movie_id from the Rooms table that has more than 75 seats. That will be the subquery. Next, turn this query into a subquery by wrapping it in parentheses. Then use the returned ids to find the matching movies and return their titles.
 
 CREATE TABLE Movies (
   id int PRIMARY KEY,
@@ -289,13 +288,26 @@ INSERT INTO Rooms (id, seats, movie_id) VALUES
   (3, 100, NULL),
   (4, 150, 3);
   
-QUERY:
+EXAMPLE: First, let's write a query that returns every movie_id from the Rooms table that has more than 75 seats. That will be the subquery. Next, turn this query into a subquery by wrapping it in parentheses. Then use the returned ids to find the matching movies and return their titles.
+
+Answer:
 select movies.title
 from movies
 where movies.id in
 (select r.movie_id
 from rooms as r
 where r.seats > 75);
+
+Example: Aggregate Subquery: Write a subquery that returns the id of the rooms that have greater than the average number of seats.
+
+Query Answer:
+select rooms.id
+from rooms
+where seats > 
+(
+ select avg(seats)
+ from rooms
+)
 ```
 
 
