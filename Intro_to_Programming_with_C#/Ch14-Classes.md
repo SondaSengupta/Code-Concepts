@@ -456,3 +456,64 @@ I ordered a tea which is the small size.
 The tea is 6 ounces.
 // https://dotnetfiddle.net/1cLSCD
 ```
+
+### Inner Classes (Nested Classes)
+- nested classes are used sparingly but they are created for two reasons. The first reason is that there is a logical relationship between the outer and inner classes, such that it may not make sense to have an inner class all on its own. Second, you may want to hide elements by putting them in a nested class.
+- Within a nested class, "this" will only represent the object of the nested class, not any outer class elements.
+
+Example:
+``` C#
+using System;
+using System.Collections.Generic;
+
+public class House
+{
+	string address;
+	List<Room> room;
+
+	House(string address, List<Room> room) {
+		this.address = address;
+		this.room = room;
+	}
+
+	enum Location {
+		urban,
+		rural,
+		suburban,
+	}
+
+	public class Room {
+
+		string color;
+		string name;
+
+		public Room (string color, string name) {
+			this.color = color;
+			this.name = name;
+		}
+
+	}
+
+
+	public static void Main()
+	{
+		List<Room> rooms = new List<Room>();
+		Room livingRoom = new Room("yellow", "living room");
+		rooms.Add(livingRoom);
+		Room kitchen = new Room("white", "kitchen");
+		rooms.Add(kitchen);
+		Room bedroom = new Room("blue", "bedroom");
+		rooms.Add(bedroom);
+
+
+		House FirstListing = new House("123 Elm Street", rooms);
+
+		var numberOfRooms = FirstListing.room.Count;
+		Console.WriteLine("The house on {0} has {1} rooms.", FirstListing.address, numberOfRooms);
+	}
+}
+====
+OUTPUT:
+The house on 123 Elm Street has 3 rooms.
+link: https://dotnetfiddle.net/Mr4fsM
+```
