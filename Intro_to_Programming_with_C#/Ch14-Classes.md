@@ -517,3 +517,22 @@ OUTPUT:
 The house on 123 Elm Street has 3 rooms.
 link: https://dotnetfiddle.net/Mr4fsM
 ```
+=======
+### Generics
+- **generics** are special classes that allow the compiler to ready the class without knowing the type of objects inside initially.
+- once an object of that generic class is created, that object's type are only of that type and cannot be changed.
+- Typifying a class (creating a generic class) means to add to the declaration of a class a parameter (replacement) of unknown type, which the class will use during its operation. Subsequently, when the class is instantiated, this parameter is replaced with the name of some specific type.
+
+#### Declaring a Generic Class
+- The <> is obligatory to specify parameters for the class. The "T" represents what type we'll be passing in upon instantiation.
+
+``` C#
+class AnimalShelter<T>
+{
+    // Class body here …
+}
+
+//
+AnimalShelter<Dog> dogsShelter = new AnimalShelter<Dog>();
+AnimalShelter<Cat> catsShelter = new AnimalShelter<Cat>();
+```
