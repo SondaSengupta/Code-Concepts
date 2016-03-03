@@ -1,5 +1,6 @@
 # Introduction to SQL
 - based off code school's SQL Course: http://campus.codeschool.com/courses/try-sql/
+- more info: http://stackoverflow.com/questions/2054130/what-is-advanced-sql
 
 ### Selecting Data
 ```

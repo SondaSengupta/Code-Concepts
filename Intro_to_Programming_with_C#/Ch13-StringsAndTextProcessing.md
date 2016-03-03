@@ -137,3 +137,7 @@ True
 ```
 #### Operations for Manipulating strings
 To be continued...
+
+
+#### Binary and Text Streams
+
