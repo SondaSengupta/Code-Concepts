@@ -15,5 +15,11 @@
 -     Others – multi-sets, bags, multi-bags, priority queues, graphs, etc...
 
 ### List Data Structures
-- **list** is an ordered sequence of elements. A list data structure is arranged consequetively and has a property length, which is a count of the elements within it.
+- a list is an ordered sequence of elements. A list data structure is arranged consequetively and has a property length, which is a count of the elements within it.  
+- arrays have a fixed size that you have to specify before you create the array. If you want to expand the array than you will have to make a new array that is larger in size and then copy the information over.
+
+### List Class
+- it keeps its elements in an array. The list already has a certain size, and when it grows it doubles in size, so there is always a used and unused buffer
+- search by index is very fast because it's just an array underneath. Search by value is very slow. Adding and removing elements is also slow because we have to shift elements over.
+- adding a new element is generally very fast
 - 
