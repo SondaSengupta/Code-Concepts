@@ -20,7 +20,7 @@
 
 ### Static versus Dynamic Implementation of Data Structures
 - a static implementation of a data structure is when the size of it is fixed and memory is allocated at compile time. When the structure is filled, under-the-hood it must create a new structure that is usually twice the original size and move all elements over. There is the risk of using memory inefficiently since an unused buffer may be large (such as an array-based implementation). Most data structures such as list, queue, stack are done in a static, array based implementation.
-- a dynamic implementation of a data structure is when the size is calculated during execution and the structure only uses the amount of memory/size it needs. This is more difficult to code since the program must keep up with its items and location at all times (such as linked list). In C#, you would have to make your own custom class of queue, stack, and list utilizing the LinkedList class in order to get a dynamic implementation of these data structures.
+- a dynamic implementation of a data structure is when the size is calculated during execution and the structure only uses the amount of memory/size it needs. This is more difficult to code since the program must keep up with its items and location at all times (such as linked list). In C#, you would have to make your own custom class of queue, stack, and list utilizing the LinkedList class in order to get a dynamic implementation of these data structures. C# natively supports linked list, which is a double linked list.
 
 ### List Data Structures
 - a list is an ordered sequence of elements. A list data structure is arranged consequetively and has a property length, which is a count of the elements within it.  
