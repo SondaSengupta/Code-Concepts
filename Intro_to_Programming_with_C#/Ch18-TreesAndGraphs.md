@@ -9,4 +9,3 @@
 - **Root** is node with no parent. In this example, 7.
 - **Leaf** is a node without any child nodes. In this example, 1 and 6 are just a few leaves.
 - **Sibling** are nodes of the same depth. For example, 1 and 6 are also siblings.
-- 
