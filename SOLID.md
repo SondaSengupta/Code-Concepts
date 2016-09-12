@@ -27,8 +27,6 @@ function PrintMyName(name){
  console.log("My name is" + name);
 }
 
-
-
 ```
 
 2. Inheritance/Template Method - child types that override base classes or interfaces
@@ -45,7 +43,14 @@ function PrintMyName(name){
 -Template Method Pattern
 -Recommended Reading: Agile Practices by Robert C. Martin
 
-## The Liskov Substitution Princple
+## The Liskov Substitution Principle
+**definition:** child classes should be able to be subsituted for their base classes. Child classes must not remove base class behavior or violate base class invariants.
+-A lot of people use the is-a to describe the relationship between child and base classes. With LSP, consider using "is-substitutable-for" as a relationship. For example, a hound is-a base class dog, but a hound is-subsitutable-for dog, meaning it can work for any places that require a dog? Derived classes must not violate any constraints defined (or assumed by clients) on their base classes.
+
+clients - other classes that make use of your class
+invariants - 
+
+
 
 
 
