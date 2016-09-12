@@ -13,6 +13,24 @@ SOLID is a group of design principles that when combined together provide a good
 
 ### Three Ways of Acheiving the Open-Closed Principle
 1. Parameters (procedural programming) - allow the client to control behavior through parameters in methods. Combined with delegats/lambdas can be powerful. This is sometimes means attributing state to a function. 
+
+```Javascript
+
+//Non OCP Method: Will only work for anyone named Sonda. To modify, to use different names, you will need to modify the internal of the function.
+function PrintMyName(){
+ var name = "Sonda";
+ console.log("My name is" + name);
+}
+
+//More OCP: Now you can pass whatever name you wish as a parameter of the function, and the function works without any internal modification.
+function PrintMyName(name){
+ console.log("My name is" + name);
+}
+
+
+
+```
+
 2. Inheritance/Template Method - child types that override base classes or interfaces
 3. Composition/Strategy Pattern -find the abstraction, creating an interface, extracting out the logic into separate classes in which each represents a particular node in the decision tree. More info: http://stackoverflow.com/questions/91932/how-does-the-strategy-pattern-work
 
