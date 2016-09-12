@@ -54,7 +54,50 @@ clients - other classes that make use of your class
 -If you are calling on base properties to perform an action. It's better to have the base class just call a method that uses it's own properties.
 -If you have a child type that inherits from the base class or interface, but does not actually fully implement that interface.
 
+``` C#
 
+public abstract class Shape
+{
+  public abstract int Area();
+}
+
+public class Rectangle : Shape 
+{
+ public int Height {get; set;}
+ public int Width {get; set;}
+ 
+ public override int Area()
+ {
+  return Height * Width;
+ }
+ 
+}
+
+public class Square : Shape
+{
+ public int Length { get; set: }
+
+ public override int Area()
+ {
+  return Length * Length;
+ }
+}
+
+public void Main()
+{
+  var shapes = new List<Shape>
+  {
+   new Rectangle{ Height = 5, Width = 10},
+   new Square {Length = 5}
+  }
+  var areas = new List<int>()
+  foreach(Shape shape in shapes)
+  {
+   areas.Add(shape.Area());
+  }
+}
+
+```
 
 
 
