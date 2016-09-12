@@ -45,10 +45,14 @@ function PrintMyName(name){
 
 ## The Liskov Substitution Principle
 **definition:** child classes should be able to be subsituted for their base classes. Child classes must not remove base class behavior or violate base class invariants.
--A lot of people use the is-a to describe the relationship between child and base classes. With LSP, consider using "is-substitutable-for" as a relationship. For example, a hound is-a base class dog, but a hound is-subsitutable-for dog, meaning it can work for any places that require a dog? Derived classes must not violate any constraints defined (or assumed by clients) on their base classes.
+-A lot of people use the is-a to describe the relationship between child and base classes. With LSP, consider using "is-substitutable-for" as a relationship. For example, a hound is-a base class dog, but a hound is-subsitutable-for dog, meaning it can work for any places that require a dog? Derived classes must not violate any constraints defined (or assumed by clients) on their base classes. 
+-Polymorphism also states that a derived class may be treated as objects of a base class in places such as method parameters, collections, or arrays. 
 
 clients - other classes that make use of your class
-invariants - 
+
+### LSP Violation Code Smells
+-If you are calling on base properties to perform an action. It's better to have the base class just call a method that uses it's own properties.
+-If you have a child type that inherits from the base class or interface, but does not actually fully implement that interface.
 
 
 
