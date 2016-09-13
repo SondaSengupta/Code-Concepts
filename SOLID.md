@@ -52,6 +52,8 @@ clients - other classes that make use of your class
 
 ### LSP Violation Code Smells
 -If you are calling on base properties to perform an action. It's better to have the base class just call a method that uses it's own properties.
+-if you doing a lot of if then checks that use passed in properties.
+-"Tell Don't Ask" = don't interogate an object for their internal, rather you should just tell the object to perform an action.
 -If you have a child type that inherits from the base class or interface, but does not actually fully implement that interface.
 
 ``` C#
@@ -93,11 +95,13 @@ public void Main()
   var areas = new List<int>()
   foreach(Shape shape in shapes)
   {
-   areas.Add(shape.Area());
+   areas.Add(shape.Area()); //See how you just tell it do calculate area and the child classes will calculate area for itself.
   }
 }
 
 ```
+
+
 
 
 
