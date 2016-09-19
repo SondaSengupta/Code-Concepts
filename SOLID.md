@@ -100,6 +100,12 @@ public void Main()
 }
 
 ```
+## The Interface Segregation Principle
+
+When you use an interface you must use all of its required methods, but you should not create a massive interface that forces a class to use all those methods, even ones that it has no need to use. 
+
+Violations of the interface segregation result into a lot of coupling, which reduces flexibility and maintainability.
+
 
 
 
