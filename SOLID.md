@@ -104,7 +104,32 @@ public void Main()
 
 When you use an interface you must use all of its required methods, but you should not create a massive interface that forces a class to use all those methods, even ones that it has no need to use. 
 
-Violations of the interface segregation result into a lot of coupling, which reduces flexibility and maintainability.
+Violations of the interface segregation result into a lot of coupling, which reduces flexibility and maintainability. This also violates the Liskov substitution principle if you have a base class that has an interface and a child class that has the same interface but with not implemented exceptions.
+
+**Ways to combat this:**
+- Make small, many interfaces if needed instead of a Fat interface, so classes will fully implement only the methods they need.
+- If a Fat interface is from a 3rd party, such certain .NET interfaces, then use an "adapter" in between, an interface that has only the components you need from the fat one, everywhere else in your code.
+- Remember overall, you only need to refactor when a code smell becomes a pain point or a problem.
+
+## The Dependency Inversion Principle
+
+Would you solder a toaster directly into the wall? No, of course not, you would use an electrical plug and a wall outlet. This common interface allows us to the knowledge that we can implement anything with this type plug to the wall. Dependency Inversion allows us to do the same thing. It is writing our classes in such a way that our dependencies are exposed as interfaces, so then we can pass the implementations around just like plugs and an outlet.
+
+**The Hollywood Principle:**
+"Don't call us; we'll call you" Instead of a class asking for what it needs within it, the class goes out and fetches all it needs in the beginning.
+
+**Three Primary Techniques**
+Constructor Injection - instance of the strategy pattern where the class self-document what they need to perform work and classes are always in a valid state once constructed. Cons are that classes can have many parameters/dependencies, may require a default constructor such as serialized, and it effectively makes it so all methods require all dependencies even if that's not true since you are asking for all dependencies in order to create a class.
+Property Injection
+Parameter Injection
+
+
+
+
+
+
+
+
 
 
 
