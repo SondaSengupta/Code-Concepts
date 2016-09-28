@@ -7,6 +7,6 @@ You can see this in callbacks, event-handlers, and dependency injection, the mos
 Dependency Injection is a particular kind of IoC where instead of the class controlling the details of what it depends within its innards, the control is pushed to the client who passes what the class requires to accept.
 
 ### Links:
-http://programmers.stackexchange.com/questions/205681/why-is-inversion-of-control-named-that-way
-http://stackoverflow.com/questions/3058/what-is-inversion-of-control
-http://www.martinfowler.com/articles/injection.html
+- http://programmers.stackexchange.com/questions/205681/why-is-inversion-of-control-named-that-way  
+- http://stackoverflow.com/questions/3058/what-is-inversion-of-control
+- http://www.martinfowler.com/articles/injection.html
