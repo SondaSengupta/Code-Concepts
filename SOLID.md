@@ -1,3 +1,4 @@
+**Resources Link:** https://app.pluralsight.com/library/courses/principles-oo-design/table-of-contents
 
 ## What is SOLID?
 SOLID is a group of design principles that when combined together provide a good roadmap for effective, maintainable object-oriented code. SOLID stands for:
@@ -140,24 +141,3 @@ So when creating a class, in the constructor, move in the properties that are us
 **What is an IoC Container?**
 - You have container that lists all the managed interfaces and other dependencies to it. You register interfaces with their intended implemenation class so that anywhere the container sees an object, it will use that specific implementation where that interface is required. During application startup, these dependencies are resolved by a resolve or build method during start like in the global.asax file. The IoC container can help you create classes with all the dependencies it needs.
 - Examples include Autofac, Ninject, Munq, and Microsoft Unity
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
