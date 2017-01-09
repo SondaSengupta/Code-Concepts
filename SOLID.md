@@ -33,28 +33,28 @@ function PrintMyName(name){
 3. Composition/Strategy Pattern -find the abstraction, creating an interface, extracting out the logic into separate classes in which each represents a particular node in the decision tree. More info: http://stackoverflow.com/questions/91932/how-does-the-strategy-pattern-work
 
 ### Negatives of OCP
--Adds complexity to the design so not suitable for simple things
--It's best to not try OCP at first, but if you see yourself changing the class more than once, then refactor to achieve OCP
--No design can be closed against all changes in code.
+- Adds complexity to the design so not suitable for simple things
+- It's best to not try OCP at first, but if you see yourself changing the class more than once, then refactor to achieve OCP
+- No design can be closed against all changes in code.
 
 ### Related Fundamentals
--Single Responsibility Pattern
--Strategy Pattern
--Template Method Pattern
--Recommended Reading: Agile Practices by Robert C. Martin
+- Single Responsibility Pattern
+- Strategy Pattern
+- Template Method Pattern
+- Recommended Reading: Agile Practices by Robert C. Martin
 
 ## The Liskov Substitution Principle
 **definition:** child classes should be able to be subsituted for their base classes. Child classes must not remove base class behavior or violate base class invariants.
--A lot of people use the is-a to describe the relationship between child and base classes. With LSP, consider using "is-substitutable-for" as a relationship. For example, a hound is-a base class dog, but a hound is-subsitutable-for dog, meaning it can work for any places that require a dog? Derived classes must not violate any constraints defined (or assumed by clients) on their base classes. 
--Polymorphism also states that a derived class may be treated as objects of a base class in places such as method parameters, collections, or arrays. 
+- A lot of people use the is-a to describe the relationship between child and base classes. With LSP, consider using "is-substitutable-for" as a relationship. For example, a hound is-a base class dog, but a hound is-subsitutable-for dog, meaning it can work for any places that require a dog? Derived classes must not violate any constraints defined (or assumed by clients) on their base classes. 
+- Polymorphism also states that a derived class may be treated as objects of a base class in places such as method parameters, collections, or arrays. 
 
 clients - other classes that make use of your class
 
 ### LSP Violation Code Smells
--If you are calling on base properties to perform an action. It's better to have the base class just call a method that uses it's own properties.
--if you doing a lot of if then checks that use passed in properties.
--"Tell Don't Ask" = don't interogate an object for their internal, rather you should just tell the object to perform an action.
--If you have a child type that inherits from the base class or interface, but does not actually fully implement that interface.
+- If you are calling on base properties to perform an action. It's better to have the base class just call a method that uses it's own properties.
+- if you doing a lot of if then checks that use passed in properties.
+- "Tell Don't Ask" = don't interogate an object for their internal, rather you should just tell the object to perform an action.
+- If you have a child type that inherits from the base class or interface, but does not actually fully implement that interface.
 
 ``` C#
 
@@ -128,18 +128,18 @@ Parameter Injection - Dependencies are passed with method parameters. Pros are t
 So when creating a class, in the constructor, move in the properties that are used in your methods, and if your method's call other services or client, create an interface for them, move the implementation in a service, and then pass in the interface into the constructor.
 
 **Dependency Injection Smells**
--when you are using the new keyword to new up something the class depends on. It's better to create an interface and then pass in the actual implementation, instead of newing up something within the class.
--use of static methods that have dependencies hidden in them. It's fine to use static methods have all that needs within its own class, but if has dependencies on other classes/clients. You can pass an interface instead through method injection. Or use facade pattern.
+- when you are using the new keyword to new up something the class depends on. It's better to create an interface and then pass in the actual implementation, instead of newing up something within the class.
+- use of static methods that have dependencies hidden in them. It's fine to use static methods have all that needs within its own class, but if has dependencies on other classes/clients. You can pass an interface instead through method injection. Or use facade pattern.
 
 **Instatiating Objects**
--So if you are passing dependencies within a constructor, how are you going to instantiate it since .NET needs to be able to have a default implementation of this class when it starts up.
--Default Constructor - you can have a default constructor that news up what you typically use in your application. AKA a poor man's depdency injection or poor man's IoC
--Add to Main Method - you can manually instantiate it to your application's startup routine like in the global.asax file or config file.
--IoC Container - You can use an "Inversion of Control" container which is basically the same as you adding configuration within the startup routine, but it is a thing that will help you do it easier and more intelligently. Autofac, for example.
+- So if you are passing dependencies within a constructor, how are you going to instantiate it since .NET needs to be able to have a default implementation of this class when it starts up.
+- Default Constructor - you can have a default constructor that news up what you typically use in your application. AKA a poor man's depdency injection or poor man's IoC
+- Add to Main Method - you can manually instantiate it to your application's startup routine like in the global.asax file or config file.
+- IoC Container - You can use an "Inversion of Control" container which is basically the same as you adding configuration within the startup routine, but it is a thing that will help you do it easier and more intelligently. Autofac, for example.
 
 **What is an IoC Container?**
 - You have container that lists all the managed interfaces and other dependencies to it. You register interfaces with their intended implemenation class so that anywhere the container sees an object, it will use that specific implementation where that interface is required. During application startup, these dependencies are resolved by a resolve or build method during start like in the global.asax file. The IoC container can help you create classes with all the dependencies it needs.
--Examples include Autofac, Ninject, Munq, and Microsoft Unity
+- Examples include Autofac, Ninject, Munq, and Microsoft Unity
 
 
 
